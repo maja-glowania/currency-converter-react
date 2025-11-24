@@ -30,20 +30,30 @@
 
 .form__field {
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   margin-top: 10px;
   padding: 10px;
 }
 
 .form__button {
   border-radius: 25px;
-  border: 0px;
+  border: none;
   color: white;
-  background-color: green;
+  background-color: hsl(120, 100%, 25%);
   padding: 15px;
   margin: 10px;
   font-weight: 700;
   font-size: 20px;
+  transition: background-color 0.8s, transform 0.5s;
+}
+
+.form__button:hover {
+  background-color: hsl(120, 100%, 15%);
+}
+
+.form__button:active {
+  transform: scale(0.95);
+  background-color: hsl(120, 100%, 35%);
 }
 
 .form__important {

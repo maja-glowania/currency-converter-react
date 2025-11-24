@@ -18,7 +18,7 @@ const Result = ({ result, currency }) => {
 
     return (
       <p className="result-output">
-        Otrzymasz: <strong>{formattedResult}</strong>
+        Wynik: <strong>{formattedResult}</strong>
       </p>
     );
   };
