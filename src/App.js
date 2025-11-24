@@ -1,24 +1,16 @@
 import { useState, useEffect } from "react";
+import Layout from "./Layout";
 import Form from "./Form";
 import Result from "./Result";
-
-const staticRates = {
-  EUR: 4.1802,
-  GBP: 4.9989,
-  USD: 3.863,
-  AUD: 2.4286,
-  PLN: 1.0,
-};
-
-const availableCurrencies = Object.keys(staticRates).filter(
-  (currency) => currency !== "PLN"
-);
+import { STATIC_RATES, AVAILABLE_CURRENCIES } from "./Data";
 
 function App() {
   const [inputAmount, setInputAmount] = useState("");
   const [inputCurrency, setInputCurrency] = useState("EUR");
+
   const [calculatedAmount, setCalculatedAmount] = useState("");
   const [calculatedCurrency, setCalculatedCurrency] = useState("EUR");
+
   const [result, setResult] = useState(null);
 
   const handleCalculate = () => {
@@ -29,30 +21,27 @@ function App() {
   useEffect(() => {
     const numericAmount = parseFloat(calculatedAmount);
 
-    if (numericAmount > 0 && staticRates[calculatedCurrency]) {
-      const rate = staticRates[calculatedCurrency];
-
+    if (numericAmount > 0 && STATIC_RATES[calculatedCurrency]) {
+      const rate = STATIC_RATES[calculatedCurrency];
       const calculatedResult = numericAmount / rate;
-
-      setResult(calculatedResult.toFixed(2));
+      setResult(calculatedResult);
     } else {
       setResult(null);
     }
   }, [calculatedAmount, calculatedCurrency]);
 
   return (
-    <>
+    <Layout>
       <Form
         amount={inputAmount}
-        changeAmount={setInputAmount}
         currency={inputCurrency}
-        changeCurrency={setInputCurrency}
-        availableCurrencies={availableCurrencies}
+        availableCurrencies={AVAILABLE_CURRENCIES}
+        setAmount={setInputAmount}
+        setCurrency={setInputCurrency}
         calculate={handleCalculate}
       />
-
       <Result result={result} currency={calculatedCurrency} />
-    </>
+    </Layout>
   );
 }
 

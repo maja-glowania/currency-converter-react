@@ -1,62 +1,49 @@
 import "./style.css";
+import CurrencySelect from "./CurrencySelect";
 
 const Form = ({
   amount,
-  changeAmount,
+  setAmount,
   currency,
-  changeCurrency,
+  setCurrency,
   availableCurrencies,
   calculate,
 }) => {
-  const submit = (event) => {
-    event.preventDefault();
-    calculate();
+  // Funkcja obsługująca wysłanie formularza (kliknięcie "Przelicz")
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Zapobiega przeładowaniu strony
+    calculate(); // Wywołuje funkcję handleCalculate z App.js
   };
 
   return (
-    <form className="form" onSubmit={submit}>
-      <fieldset class="form__fieldset">
-        <legend class="form__legend">Kalkulator walut</legend>
-        <p>
-          Pola obowiązkowe oznaczone są <span class="form__important">*</span>.
-        </p>
-        <p>
-          <label className="form__label">
-            <span className="form__important">* </span>Kwota w PLN:
-            <input
-              className="form__field"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="Wpisz kwotę"
-              required
-              value={amount}
-              onChange={(event) => changeAmount(event.target.value)}
-            />
-          </label>
-        </p>
-        <p>
-          <label className="form__label">
-            Wybierz walutę
-            <select
-              className="form__field"
-              value={currency}
-              onChange={(event) => changeCurrency(event.target.value)}
-            >
-              {availableCurrencies.map((currency) => (
-                <option key={currency} value={currency}>
-                  {currency}
-                </option>
-              ))}
-            </select>
-          </label>
-        </p>
-      </fieldset>
-      <p>
-        <button class="form__button" type="submit">
-          Przelicz kwotę
-        </button>
-      </p>
+    <form className="converter-form" onSubmit={handleSubmit}>
+      {/* Input Kwoty (PLN) */}
+      <label className="amount-label">
+        Kwota (PLN):
+        <input
+          className="amount-input"
+          type="number"
+          value={amount}
+          // Używa nowej nazwy: setAmount
+          onChange={(e) => setAmount(e.target.value)}
+          min="0"
+          required
+        />
+      </label>
+
+      {/* Select Waluta Docelowa (wydzielony komponent) */}
+      <CurrencySelect
+        label="Przelicz na:"
+        value={currency}
+        // Używa nowej nazwy: setCurrency
+        onChange={setCurrency}
+        availableCurrencies={availableCurrencies}
+      />
+
+      {/* Przycisk "Przelicz" */}
+      <button className="calculate-button" type="submit">
+        Przelicz
+      </button>
     </form>
   );
 };
