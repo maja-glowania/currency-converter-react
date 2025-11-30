@@ -1,7 +1,7 @@
 import "./style.css";
 
-const Layout = ({ children }) => {
+const Body = ({ children }) => {
   return <main className="body">{children}</main>;
 };
 
-export default Layout;
+export default Body;
