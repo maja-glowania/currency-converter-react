@@ -7,11 +7,3 @@ html {
 ::before {
   box-sizing: inherit;
 }
-
-body {
-  font-family: "Quicksand", sans-serif;
-  background-color: hsl(120, 100%, 99%);
-  max-width: 1000px;
-  margin: auto;
-  padding: 50px;
-}
