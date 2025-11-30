@@ -1,4 +1,4 @@
-export const STATIC_RATES = {
+export const staticRates = {
   EUR: 4.1802,
   GBP: 4.9989,
   USD: 3.863,
@@ -6,6 +6,6 @@ export const STATIC_RATES = {
   PLN: 1.0,
 };
 
-export const AVAILABLE_CURRENCIES = Object.keys(STATIC_RATES).filter(
+export const availableCurrencies = Object.keys(staticRates).filter(
   (currency) => currency !== "PLN"
 );

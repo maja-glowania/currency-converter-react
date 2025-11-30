@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Body from "./Body";
 import Form from "./Form";
 import Result from "./Result";
-import { STATIC_RATES, AVAILABLE_CURRENCIES } from "./Data";
+import { staticRates, availableCurrencies } from "./Data";
 
 function App() {
   const [inputAmount, setInputAmount] = useState("");
@@ -21,8 +21,8 @@ function App() {
   useEffect(() => {
     const numericAmount = parseFloat(calculatedAmount);
 
-    if (numericAmount > 0 && STATIC_RATES[calculatedCurrency]) {
-      const rate = STATIC_RATES[calculatedCurrency];
+    if (numericAmount > 0 && staticRates[calculatedCurrency]) {
+      const rate = staticRates[calculatedCurrency];
       const calculatedResult = numericAmount / rate;
       setResult(calculatedResult);
     } else {
@@ -35,7 +35,7 @@ function App() {
       <Form
         amount={inputAmount}
         currency={inputCurrency}
-        availableCurrencies={AVAILABLE_CURRENCIES}
+        availableCurrencies={availableCurrencies}
         setAmount={setInputAmount}
         setCurrency={setInputCurrency}
         calculate={handleCalculate}
