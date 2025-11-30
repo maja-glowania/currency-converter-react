@@ -17,13 +17,14 @@ const Form = ({
   return (
     <form className="form" onSubmit={handleSubmit}>
       <fieldset className="form__fieldset">
-        <legend class="form__legend">Kalkulator walut</legend>
+        <legend className="form__legend">Kalkulator walut</legend>
         <p>
-          Pola obowiązkowe oznaczone są <span class="form__important">*</span>.
+          Pola obowiązkowe oznaczone są{" "}
+          <span className="form__important">*</span>.
         </p>
-        <p>
+        <div>
           <label className="form__label">
-            <span class="form__important">* </span>Kwota w PLN:
+            <span className="form__important">* </span>Kwota w PLN:
             <input
               className="form__field"
               type="number"
@@ -34,15 +35,15 @@ const Form = ({
               required
             />
           </label>
-        </p>
-        <p>
+        </div>
+        <div>
           <CurrencySelect
             label="Wybierz walutę"
             value={currency}
             onChange={setCurrency}
             availableCurrencies={availableCurrencies}
           />
-        </p>
+        </div>
       </fieldset>
       <p>
         <button className="form__button" type="submit">
