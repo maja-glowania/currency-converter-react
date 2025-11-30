@@ -4,31 +4,20 @@ const Result = ({ result, currency }) => {
   const renderResult = () => {
     if (result === null || result === undefined) {
       return (
-        <p className="result-placeholder">
-          Wpisz kwotę i naciśnij "Przelicz", aby zobaczyć wynik.
+        <p className="result--placeholder">
+          Wpisz kwotę i naciśnij "Przelicz kwotę", aby zobaczyć wynik.
         </p>
       );
     }
 
-    const formattedResult = new Intl.NumberFormat("pl-PL", {
-      style: "currency",
-      currency: currency,
-      minimumFractionDigits: 2,
-    }).format(result);
+    const fixedResult = result.toFixed(2);
+    const formattedNumber = fixedResult.replace(".", ",");
+    const formattedResult = `${formattedNumber} ${currency}`;
 
-    return (
-      <p className="result-output">
-        Wynik: <strong>{formattedResult}</strong>
-      </p>
-    );
+    return <span>{formattedResult}</span>;
   };
 
-  return (
-    <div className="result-container">
-      <h2>Wynik:</h2>
-      {renderResult()}
-    </div>
-  );
+  return <div className="result">Wynik: {renderResult()}</div>;
 };
 
 export default Result;
