@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Layout from "./Layout";
+import Body from "./Body";
 import Form from "./Form";
 import Result from "./Result";
 import { STATIC_RATES, AVAILABLE_CURRENCIES } from "./Data";
@@ -31,7 +31,7 @@ function App() {
   }, [calculatedAmount, calculatedCurrency]);
 
   return (
-    <Layout>
+    <Body>
       <Form
         amount={inputAmount}
         currency={inputCurrency}
@@ -41,7 +41,7 @@ function App() {
         calculate={handleCalculate}
       />
       <Result result={result} currency={calculatedCurrency} />
-    </Layout>
+    </Body>
   );
 }
 
