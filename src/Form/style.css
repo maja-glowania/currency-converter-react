@@ -5,6 +5,8 @@
 }
 
 .form__fieldset {
+  display: flex;
+  flex-direction: column;
   border-radius: 25px;
   border: 3px solid green;
   padding: 10px;
@@ -23,14 +25,14 @@
 .form__label {
   width: 100%;
   font-weight: 700;
-  max-width: 150px;
+  max-width: 200px;
   display: inline-block;
   padding: 10px;
 }
 
 .form__field {
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
   margin-top: 10px;
   padding: 10px;
 }
