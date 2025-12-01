@@ -5,7 +5,7 @@ const CurrencySelect = ({ label, value, onChange, availableCurrencies }) => {
       <select
         className="form__field"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={({ target }) => onChange(target.value)}
       >
         {availableCurrencies.map((currency) => (
           <option key={currency} value={currency}>

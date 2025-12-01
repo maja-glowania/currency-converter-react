@@ -9,8 +9,8 @@ const Form = ({
   availableCurrencies,
   calculate,
 }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = ({ preventDefault }) => {
+    preventDefault();
     calculate();
   };
 
@@ -29,7 +29,7 @@ const Form = ({
               className="form__field"
               type="number"
               value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              onChange={({ target }) => setAmount(target.value)}
               min="0"
               placeholder="Wpisz kwotę"
               required
