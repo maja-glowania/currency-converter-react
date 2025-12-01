@@ -18,7 +18,7 @@ The application is based on static rates and enables you to:
 
 [Link to the Demo website](https://maja-glowania.github.io/currency-converter-react/)
 
-![currency-converter](https://github.com/user-attachments/assets/b175bfee-aa1a-4a34-b658-28dbbe7948eb)
+![currency-converter](https://github.com/user-attachments/assets/baaed0d3-9008-47db-807d-b41f28f1db8c)
 
 ## Technologies
 
