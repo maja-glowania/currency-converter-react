@@ -9,8 +9,8 @@ const Form = ({
   availableCurrencies,
   calculate,
 }) => {
-  const handleSubmit = ({ preventDefault }) => {
-    preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     calculate();
   };
 
