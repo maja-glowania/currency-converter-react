@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import Body from "./Body";
 import Form from "./Form";
 import Result from "./Result";
-import { staticRates, availableCurrencies } from "./Data";
+import { staticRates, availableCurrencies } from "./data";
 
 function App() {
+  const Body = ({ children }) => {
+    return <main className="body">{children}</main>;
+  };
+
   const [inputAmount, setInputAmount] = useState("");
   const [inputCurrency, setInputCurrency] = useState("EUR");
 
