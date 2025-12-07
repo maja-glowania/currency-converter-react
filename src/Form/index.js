@@ -21,7 +21,7 @@ const Form = ({
         <legend className="form__legend">Kalkulator walut</legend>
         {children}
         <p>
-          Pola obowiązkowe oznaczone są{"*"}
+          Pola obowiązkowe oznaczone są{" "}
           <span className="form__important">*</span>.
         </p>
         <div>
