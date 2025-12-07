@@ -2,6 +2,7 @@
   text-align: center;
   max-width: 600px;
   margin: auto;
+  position: relative;
 }
 
 .form__fieldset {
@@ -11,6 +12,8 @@
   border: 3px solid green;
   padding: 10px;
   background-color: hsl(120, 100%, 95%);
+  position: relative;
+  padding-top: 4cqi;
 }
 
 .form__legend {

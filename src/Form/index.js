@@ -8,6 +8,7 @@ const Form = ({
   setCurrency,
   availableCurrencies,
   calculate,
+  children,
 }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,8 +19,9 @@ const Form = ({
     <form className="form" onSubmit={handleSubmit}>
       <fieldset className="form__fieldset">
         <legend className="form__legend">Kalkulator walut</legend>
+        {children}
         <p>
-          Pola obowiązkowe oznaczone są{" "}
+          Pola obowiązkowe oznaczone są{"*"}
           <span className="form__important">*</span>.
         </p>
         <div>
