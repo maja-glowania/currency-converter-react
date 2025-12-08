@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./style.css";
+import { ClockContainer } from "./styled.js";
 
 const formatCurrentDate = (date) => {
   const options = {
@@ -12,7 +12,6 @@ const formatCurrentDate = (date) => {
     second: "2-digit",
     hour12: false,
   };
-
   return date.toLocaleString("pl-PL", options);
 };
 
@@ -23,9 +22,7 @@ const Clock = () => {
     const refreshClock = () => {
       setDate(new Date());
     };
-
     const timerId = setInterval(refreshClock, 1000);
-
     return () => {
       clearInterval(timerId);
     };
@@ -33,7 +30,7 @@ const Clock = () => {
 
   const formattedTime = formatCurrentDate(date);
 
-  return <div className="clock">Dzisiaj jest {formattedTime}</div>;
+  return <ClockContainer>Dzisiaj jest {formattedTime}</ClockContainer>;
 };
 
 export default Clock;
