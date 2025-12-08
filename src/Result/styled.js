@@ -1,4 +1,6 @@
-.result {
+import styled from "styled-components";
+
+export const ResultContainer = styled.div`
   font-size: 25px;
   font-weight: 700;
   text-align: center;
@@ -10,9 +12,9 @@
   border: 3px solid green;
   padding: 15px;
   background-color: hsl(120, 100%, 95%);
-}
+`;
 
-.result--placeholder {
+export const PlaceholderP = styled.p`
   font-size: 20px;
   font-weight: 400;
-}
+`;

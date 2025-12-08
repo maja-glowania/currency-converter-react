@@ -1,12 +1,12 @@
-import "./style.css";
+import { ResultContainer, PlaceholderP } from "./styled.js";
 
 const Result = ({ result, currency }) => {
   const renderResult = () => {
     if (result === null || result === undefined) {
       return (
-        <p className="result--placeholder">
+        <PlaceholderP>
           Wpisz kwotę i naciśnij "Przelicz kwotę", aby zobaczyć wynik.
-        </p>
+        </PlaceholderP>
       );
     }
 
@@ -17,7 +17,7 @@ const Result = ({ result, currency }) => {
     return <span>{formattedResult}</span>;
   };
 
-  return <div className="result">Wynik: {renderResult()}</div>;
+  return <ResultContainer>Wynik: {renderResult()}</ResultContainer>;
 };
 
 export default Result;
