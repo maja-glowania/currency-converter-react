@@ -22,12 +22,19 @@ The application is based on static rates and enables you to:
 
 ## Technologies
 
-- React (JavaScript Library)
-- HTML
-- CSS
-- Java Script
-- BEM Convention
-- Alternative Box Model
+- **React** (JavaScript Library)
+- **Styled-Components** (CSS-in-JS library, used for all component styling and global styles)
+- **Custom Hooks** (Logic for the clock is extracted into the `useCurrentDate` hook)
+- **HTML**
+- **JavaScript**
+- **Modern JavaScript syntax (ES6+)**
+
+## Architectural Changes
+
+**Ważna uwaga:** Aplikacja została przebudowana z tradycyjnego CSS/klas na architekturę **CSS-in-JS** w celu lepszej modułowości:
+
+1.  **Styling:** Usunięto tradycyjne pliki `.css` i klasy BEM. Style są teraz zdefiniowane obok komponentów (np. `Form/styled.js`, `Clock/styled.js`).
+2.  **Global Styles:** Globalny reset CSS i style `body` zostały przeniesione do komponentu `<GlobalStyle />` (używając `createGlobalStyle`).
 
 ## Available Scripts
 
