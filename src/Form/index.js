@@ -1,4 +1,15 @@
-import "./style.css";
+import {
+  FormContainer,
+  Fieldset,
+  Legend,
+  Label,
+  InputField,
+  SubmitButton,
+  ImportantSpan,
+  Paragraph,
+  Div,
+} from "./styled.js";
+
 import CurrencySelect from "../CurrencySelect";
 
 const Form = ({
@@ -16,19 +27,17 @@ const Form = ({
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <fieldset className="form__fieldset">
-        <legend className="form__legend">Kalkulator walut</legend>
+    <FormContainer onSubmit={handleSubmit}>
+      <Fieldset>
+        <Legend>Kalkulator walut</Legend>
         {children}
-        <p>
-          Pola obowiązkowe oznaczone są{" "}
-          <span className="form__important">*</span>.
-        </p>
-        <div>
-          <label className="form__label">
-            <span className="form__important">* </span>Kwota w PLN:
-            <input
-              className="form__field"
+        <Paragraph>
+          Pola obowiązkowe oznaczone są <ImportantSpan>*</ImportantSpan>.
+        </Paragraph>
+        <Div>
+          <Label>
+            <ImportantSpan>*</ImportantSpan> Kwota w PLN:
+            <InputField
               type="number"
               value={amount}
               onChange={({ target }) => setAmount(target.value)}
@@ -36,23 +45,21 @@ const Form = ({
               placeholder="Wpisz kwotę"
               required
             />
-          </label>
-        </div>
-        <div>
+          </Label>
+        </Div>
+        <Div>
           <CurrencySelect
             label="Wybierz walutę"
             value={currency}
             onChange={setCurrency}
             availableCurrencies={availableCurrencies}
           />
-        </div>
-      </fieldset>
-      <p>
-        <button className="form__button" type="submit">
-          Przelicz kwotę
-        </button>
-      </p>
-    </form>
+        </Div>
+      </Fieldset>
+      <Paragraph>
+        <SubmitButton type="submit">Przelicz kwotę</SubmitButton>
+      </Paragraph>
+    </FormContainer>
   );
 };
 
