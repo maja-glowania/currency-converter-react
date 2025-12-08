@@ -1,9 +1,10 @@
+import { SelectLabel, SelectField } from "./styled.js";
+
 const CurrencySelect = ({ label, value, onChange, availableCurrencies }) => {
   return (
-    <label className="form__label">
+    <SelectLabel>
       {label}
-      <select
-        className="form__field"
+      <SelectField
         value={value}
         onChange={({ target }) => onChange(target.value)}
       >
@@ -12,8 +13,8 @@ const CurrencySelect = ({ label, value, onChange, availableCurrencies }) => {
             {currency}
           </option>
         ))}
-      </select>
-    </label>
+      </SelectField>
+    </SelectLabel>
   );
 };
 
