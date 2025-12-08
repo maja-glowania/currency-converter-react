@@ -3,6 +3,7 @@ import Form from "./Form";
 import Clock from "./Clock";
 import Result from "./Result";
 import { staticRates, availableCurrencies } from "./data";
+import GlobalStyle from "./GlobalStyle";
 
 const Body = ({ children }) => {
   return <main className="body">{children}</main>;
@@ -35,19 +36,22 @@ function App() {
   }, [calculatedAmount, calculatedCurrency]);
 
   return (
-    <Body>
-      <Form
-        amount={inputAmount}
-        currency={inputCurrency}
-        availableCurrencies={availableCurrencies}
-        setAmount={setInputAmount}
-        setCurrency={setInputCurrency}
-        calculate={handleCalculate}
-      >
-        <Clock />
-      </Form>
-      <Result result={result} currency={calculatedCurrency} />
-    </Body>
+    <>
+      <GlobalStyle />
+      <Body>
+        <Form
+          amount={inputAmount}
+          currency={inputCurrency}
+          availableCurrencies={availableCurrencies}
+          setAmount={setInputAmount}
+          setCurrency={setInputCurrency}
+          calculate={handleCalculate}
+        >
+          <Clock />
+        </Form>
+        <Result result={result} currency={calculatedCurrency} />
+      </Body>
+    </>
   );
 }
 
