@@ -6,6 +6,6 @@ export const ClockContainer = styled.div`
   right: 10px;
   font-family: monospace;
   font-size: 14px;
-  color: #888;
+  color: ${({ theme }) => theme.colors.fontDark};
   padding: 5px;
 `;

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
 import Form from "./Form";
 import Clock from "./Clock";
 import Result from "./Result";
 import { staticRates, availableCurrencies } from "./data";
 import GlobalStyle from "./GlobalStyle";
 
-const Body = ({ children }) => {
-  return <main className="body">{children}</main>;
-};
+const StyledBody = styled.main``;
 
 function App() {
   const [inputAmount, setInputAmount] = useState("");
@@ -36,9 +36,9 @@ function App() {
   }, [calculatedAmount, calculatedCurrency]);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Body>
+      <StyledBody>
         <Form
           amount={inputAmount}
           currency={inputCurrency}
@@ -50,8 +50,8 @@ function App() {
           <Clock />
         </Form>
         <Result result={result} currency={calculatedCurrency} />
-      </Body>
-    </>
+      </StyledBody>
+    </ThemeProvider>
   );
 }
 
