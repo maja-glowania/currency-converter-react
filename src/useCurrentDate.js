@@ -1,19 +1,5 @@
 import { useState, useEffect } from "react";
 
-const formatCurrentDate = (date) => {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  };
-  return date.toLocaleString("pl-PL", options);
-};
-
 const useCurrentDate = () => {
   const [date, setDate] = useState(new Date());
 
@@ -28,7 +14,8 @@ const useCurrentDate = () => {
       clearInterval(timerId);
     };
   }, []);
-  return formatCurrentDate(date);
+
+  return date;
 };
 
 export default useCurrentDate;
