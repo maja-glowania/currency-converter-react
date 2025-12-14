@@ -4,19 +4,25 @@ import { theme } from "./theme";
 import Form from "./Form";
 import Clock from "./Clock";
 import Result from "./Result";
-import { staticRates, availableCurrencies } from "./data";
 import GlobalStyle from "./GlobalStyle";
+import { useRates } from "./useRates";
+import { Message } from "./Message";
 
 const StyledBody = styled.main``;
 
 function App() {
+  const { ratesData, loading, error } = useRates();
   const [inputAmount, setInputAmount] = useState("");
-  const [inputCurrency, setInputCurrency] = useState("EUR");
-
+  const [inputCurrency, setInputCurrency] = useState("USD");
   const [calculatedAmount, setCalculatedAmount] = useState("");
-  const [calculatedCurrency, setCalculatedCurrency] = useState("EUR");
+  const [calculatedCurrency, setCalculatedCurrency] = useState("USD");
 
   const [result, setResult] = useState(null);
+
+  const getAvailableCurrencies = (data) => {
+    if (!data) return [];
+    return Object.keys(data).filter((key) => key !== "EUR");
+  };
 
   const handleCalculate = () => {
     setCalculatedAmount(inputAmount);
@@ -26,14 +32,39 @@ function App() {
   useEffect(() => {
     const numericAmount = parseFloat(calculatedAmount);
 
-    if (numericAmount > 0 && staticRates[calculatedCurrency]) {
-      const rate = staticRates[calculatedCurrency];
-      const calculatedResult = numericAmount / rate;
-      setResult(calculatedResult);
+    if (ratesData && numericAmount > 0) {
+      const targetRateValue = ratesData[calculatedCurrency]?.value;
+      const PLNRateValue = ratesData["PLN"]?.value;
+
+      if (targetRateValue && PLNRateValue) {
+        const ratePLNtoTarget = targetRateValue / PLNRateValue;
+
+        const calculatedResult = numericAmount * ratePLNtoTarget;
+        setResult(calculatedResult);
+      } else {
+        setResult(null);
+      }
     } else {
       setResult(null);
     }
-  }, [calculatedAmount, calculatedCurrency]);
+  }, [calculatedAmount, calculatedCurrency, ratesData]);
+
+  if (loading || error) {
+    return (
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <StyledBody>
+          {loading && <Message>Ładowanie kursów walut z API...</Message>}
+          {error && (
+            <Message $isError>
+              Błąd: Nie udało się załadować kursów walut. Sprawdź połączenie lub
+              klucz API.
+            </Message>
+          )}
+        </StyledBody>
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -42,7 +73,7 @@ function App() {
         <Form
           amount={inputAmount}
           currency={inputCurrency}
-          availableCurrencies={availableCurrencies}
+          availableCurrencies={getAvailableCurrencies(ratesData)}
           setAmount={setInputAmount}
           setCurrency={setInputCurrency}
           calculate={handleCalculate}
