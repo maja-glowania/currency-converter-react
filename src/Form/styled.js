@@ -1,9 +1,6 @@
 import styled, { css } from "styled-components";
 
-const mobileBreakpoint = ({ theme }) => theme.breakpoints.mobile;
-
 const mobileFieldsetStyles = css`
-  flex-direction: column;
   padding: 10px;
 `;
 
@@ -16,10 +13,9 @@ export const FormContainer = styled.form`
 
 export const Fieldset = styled.fieldset`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 20px;
-  justify-content: space-around;
-
+  align-items: center;
   border-radius: ${({ theme }) => theme.borderRadius};
   border: 3px solid ${({ theme }) => theme.colors.primaryGreen};
   background-color: ${({ theme }) => theme.colors.backgroundLightGreen};
@@ -28,7 +24,7 @@ export const Fieldset = styled.fieldset`
   position: relative;
   padding-top: 40px;
 
-  @media (max-width: ${mobileBreakpoint}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     ${mobileFieldsetStyles}
   }
 `;
