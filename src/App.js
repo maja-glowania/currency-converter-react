@@ -21,7 +21,7 @@ function App() {
 
   const getAvailableCurrencies = (data) => {
     if (!data) return [];
-    return Object.keys(data).filter((key) => key !== "EUR");
+    return Object.keys(data);
   };
 
   const handleCalculate = () => {
