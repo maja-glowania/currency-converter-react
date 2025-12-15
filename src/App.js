@@ -10,19 +10,18 @@ import { Message } from "./Message";
 
 const StyledBody = styled.main``;
 
+const getAvailableCurrencies = (data) => {
+  if (!data) return [];
+  return Object.keys(data);
+};
+
 function App() {
   const { ratesData, loading, error } = useRates();
   const [inputAmount, setInputAmount] = useState("");
   const [inputCurrency, setInputCurrency] = useState("USD");
   const [calculatedAmount, setCalculatedAmount] = useState("");
   const [calculatedCurrency, setCalculatedCurrency] = useState("USD");
-
   const [result, setResult] = useState(null);
-
-  const getAvailableCurrencies = (data) => {
-    if (!data) return [];
-    return Object.keys(data);
-  };
 
   const handleCalculate = () => {
     setCalculatedAmount(inputAmount);
@@ -38,7 +37,6 @@ function App() {
 
       if (targetRateValue && PLNRateValue) {
         const ratePLNtoTarget = targetRateValue / PLNRateValue;
-
         const calculatedResult = numericAmount * ratePLNtoTarget;
         setResult(calculatedResult);
       } else {
@@ -49,11 +47,11 @@ function App() {
     }
   }, [calculatedAmount, calculatedCurrency, ratesData]);
 
-  if (loading || error) {
-    return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <StyledBody>
+  const renderContent = () => {
+    if (loading || error) {
+      return (
+        <>
+          <Clock />
           {loading && <Message>Ładowanie kursów walut z API...</Message>}
           {error && (
             <Message $isError>
@@ -61,15 +59,12 @@ function App() {
               klucz API.
             </Message>
           )}
-        </StyledBody>
-      </ThemeProvider>
-    );
-  }
+        </>
+      );
+    }
 
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <StyledBody>
+    return (
+      <>
         <Form
           amount={inputAmount}
           currency={inputCurrency}
@@ -81,7 +76,14 @@ function App() {
           <Clock />
         </Form>
         <Result result={result} currency={calculatedCurrency} />
-      </StyledBody>
+      </>
+    );
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <StyledBody>{renderContent()}</StyledBody>
     </ThemeProvider>
   );
 }
